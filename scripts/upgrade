@@ -18,16 +18,16 @@ if [ ! -d "$install_dir/app" ]; then
 fi
 
 
-if [[ -n "$opt_path" ]]; then
+if [[ -n "${opt_path:-}" ]]; then
     mv "$opt_path" "$install_dir/renew_cert"
     ynh_app_setting_delete --app="$app" --key=opt_path
 fi
 
-if [[ -n "$app_user" ]]; then
+if [[ -n "${app_user:-}" ]]; then
     ynh_app_setting_delete --app="$app" --key=app_user
 fi
 
-if [[ -n "$version" ]]; then
+if [[ -n "${version:-}" ]]; then
     ynh_app_setting_delete --app="$app" --key=version
 fi
 

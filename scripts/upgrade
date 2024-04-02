@@ -19,7 +19,8 @@ fi
 
 
 if [[ -n "${opt_path:-}" ]]; then
-    mv "$opt_path" "$install_dir/renew_cert"
+    rsync -a "$opt_path/renew_cert/" "$install_dir/renew_cert/"
+    ynh_secure_remove --file="$opt_path"
     ynh_app_setting_delete --app="$app" --key=opt_path
 fi
 

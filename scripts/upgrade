@@ -48,12 +48,12 @@ chown -R "$app:www-data" "$install_dir"
 ynh_script_progression "Installing automatic VPN certificate renewal…"
 
 renew_cert_path="$install_dir/renew_cert"
-if [[ ! -e "$renew_cert_path" ]]; then
+if [[ ! -d "$renew_cert_path" ]]; then
     ynh_exec_warn_less ynh_exec_as "$app" git clone "$renew_cert_repo" "$renew_cert_path"
-else
-    ynh_exec_warn_less ynh_exec_as "$app" git -C "$renew_cert_path" remote set-url origin "$renew_cert_repo"
-    ynh_exec_warn_less ynh_exec_as "$app" git -C "$renew_cert_path" fetch -t
 fi
+
+ynh_exec_warn_less ynh_exec_as "$app" git -C "$renew_cert_path" remote set-url origin "$renew_cert_repo"
+ynh_exec_warn_less ynh_exec_as "$app" git -C "$renew_cert_path" fetch -t
 ynh_exec_warn_less ynh_exec_as "$app" git -C "$renew_cert_path" checkout "$(ynh_app_upstream_version)"
 
 # We wrap the python3 script that actually renew the VPN certificate

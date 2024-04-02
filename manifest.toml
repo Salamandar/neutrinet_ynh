@@ -40,6 +40,13 @@ ram.runtime = "50M"
     default = "visitors"
 
 [resources]
+    [resources.sources.main]
+    url = "https://gitlab.domainepublic.net/Neutrinet/renew_cert/-/archive/0.3.1/renew_cert-0.3.1.tar.gz"
+    sha256 = "7cee21fd562d0bd02eeba236c1d4122b4bfeb5e5eea6b1a558d9605014a52d41"
+
+    autoupdate.strategy = "latest_gitlab_release"
+    autoupdate.asset = "tarball"
+
     [resources.system_user]
 
     [resources.install_dir]

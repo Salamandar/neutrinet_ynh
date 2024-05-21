@@ -5,6 +5,7 @@
 #=================================================
 
 renew_cert_repo="https://gitlab.domainepublic.net/Neutrinet/renew_cert.git"
+renew_cert_path="$data_dir/renew_cert"
 
 #=================================================
 # PERSONAL HELPERS

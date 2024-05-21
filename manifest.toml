@@ -44,5 +44,9 @@ ram.runtime = "50M"
 
     [resources.install_dir]
 
+    [resources.data_dir]
+    # See https://github.com/Neutrinet/neutrinet_ynh/pull/6#issuecomment-2060455857 for explanation
+    dir = "/opt/neutrinet"
+
     [resources.permissions]
     main.url = "/"

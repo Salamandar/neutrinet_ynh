@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd "__INSTALL_DIR__/renew_cert"
+cd "__DATA_DIR__/renew_cert"
 
-"__INSTALL_DIR__/renew_cert/renew_cert_cron.sh" -q
+"__DATA_DIR__/renew_cert/renew_cert_cron.sh" -q

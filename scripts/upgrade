@@ -17,10 +17,7 @@ if [ ! -d "$install_dir/app" ]; then
     find . -mindepth 1 -maxdepth 1 ! -name "app" -exec mv -t "$install_dir/app" "{}" +
 fi
 
-
 if [[ -n "${opt_path:-}" ]]; then
-    rsync -a "$opt_path/renew_cert/" "$install_dir/renew_cert/"
-    ynh_secure_remove --file="$opt_path"
     ynh_app_setting_delete --app="$app" --key=opt_path
 fi
 
@@ -48,7 +45,6 @@ chown -R "$app:www-data" "$install_dir"
 #=================================================
 ynh_script_progression "Installing automatic VPN certificate renewal…"
 
-renew_cert_path="$install_dir/renew_cert"
 if [[ ! -d "$renew_cert_path" ]]; then
     ynh_exec_warn_less ynh_exec_as "$app" git clone "$renew_cert_repo" "$renew_cert_path"
 fi

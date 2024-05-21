@@ -16,10 +16,7 @@ ynh_remove_nginx_config
 
 ynh_secure_remove "/etc/cron.daily/$app-renew-cert"
 
-#=================================================
-# REMOVE LEGACY PATHS
-#=================================================
-ynh_secure_remove --file="$opt_path"
+ynh_secure_remove --file="$data_dir"
 
 #=================================================
 # END OF SCRIPT

@@ -20,16 +20,17 @@ chown -R "$app:www-data" "$install_dir"
 #=================================================
 # INSTALL RENEW CERT
 #=================================================
-ynh_script_progression "Installing automatic VPN certificate renewal…"
+ynh_script_progression "Installing VPN certificate renewal tool…"
 
 ynh_exec_warn_less ynh_exec_as "$app" git clone "$renew_cert_repo" "$renew_cert_path"
 ynh_exec_warn_less ynh_exec_as "$app" git -C "$renew_cert_path" checkout "$(ynh_app_upstream_version)"
 
 # We wrap the python3 script that actually renew the VPN certificate
 # This wrapper will be used as a daily cron task
-cp "../conf/renew_cert.sh" "$renew_cert_path/renew_cert.sh"
-chmod 0755 "$renew_cert_path/renew_cert.sh"
-chown root: "$renew_cert_path/renew_cert.sh"
+ynh_add_config --template="renew_cert.sh" --destination="$renew_cert_path/renew_cert.sh"
+chmod 755 "$renew_cert_path/renew_cert.sh"
+chmod u+rwX,g+rX,o-rwx "$data_dir"
+chown -R "$app:www-data" "$data_dir"
 
 #=================================================
 # SYSTEM CONFIGURATION

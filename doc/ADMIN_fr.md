@@ -11,13 +11,13 @@ This actually runs the script in `/opt/neutrinet/renew_cert/`:
 
 ```shell
 cd /opt/neutrinet/renew_cert
-sudo ./renew_cert_cron.sh
+sudo ./renew_cert.sh
 ```
 
 You can increase the verbosity with the option `-v`:
 
 ```shell
-sudo ./renew_cert_cron.sh -v
+sudo ./renew_cert.sh -v
 ```
 
 To install the app without checking for certificates, run `export PACKAGE_CHECK_EXEC=1`.
